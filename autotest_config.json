@@ -1,0 +1,29 @@
+{
+  "repoUrl": "https://github.com/mend-detection-qa/poetry-git-dependency",
+  "tests": [
+    {
+      "check_name": "direct_dependencies_count",
+      "check_type": "FLEXIBLE",
+      "expected_value": 3,
+      "description": "Direct deps: requests, pyyaml (PyPI) + dateparser (git)"
+    },
+    {
+      "check_name": "direct_dependencies_names_list",
+      "check_type": "FLEXIBLE",
+      "expected_value": ["requests", "pyyaml", "dateparser"],
+      "description": "Git-sourced dep must appear in tree alongside PyPI deps"
+    },
+    {
+      "check_name": "pypi_dependencies_sha1_not_empty",
+      "check_type": "STRICT",
+      "expected_value": true,
+      "description": "PyPI deps (requests, pyyaml) must have non-empty sha1; git dep may have null sha1 (no whl/sdist in cache)"
+    },
+    {
+      "check_name": "transitive_dependencies_names_list",
+      "check_type": "FLEXIBLE",
+      "expected_value": ["certifi", "chardet", "idna", "urllib3", "python-dateutil"],
+      "description": "Transitives from both PyPI (requests) and git dep (dateparser → python-dateutil)"
+    }
+  ]
+}
