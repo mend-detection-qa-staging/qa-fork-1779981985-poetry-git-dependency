@@ -1,0 +1,18 @@
+[tool.poetry]
+name = "poetry-git-dependency"
+version = "0.1.0"
+description = "Poetry VCS/git-sourced dep: one dep from GitHub git URL, no .whl file — non-whl resolver path"
+authors = ["mend-detection-qa"]
+
+[tool.poetry.dependencies]
+python = "^3.10"
+# Standard PyPI deps
+requests = "^2.31"
+pyyaml = "^6.0"
+# Git-sourced dep (no .whl, resolved via VCS checkout)
+# Using a small, stable, well-known lib to avoid flakiness
+dateutilparser = {git = "https://github.com/scrapinghub/dateparser", tag = "v1.2.0"}
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
